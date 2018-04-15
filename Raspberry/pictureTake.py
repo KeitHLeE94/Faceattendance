@@ -1,4 +1,8 @@
-import paramiko
+#!/usr/bin/python
+try:
+    import paramiko
+except Exception as e:
+    pass
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy)
@@ -7,6 +11,7 @@ ssh.connect('192.168.43.55', username='pi', password='raspberry')
 
 stdin, stdout, stderr = ssh.exec_command('raspistill -o sample.jpg')
 #사진 촬영 명령 실행
+print("Complete")
 for line in stdout:
     print('this is stdout')
     print('...' + line.strip('\n'))
